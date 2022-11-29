@@ -1,6 +1,6 @@
 # Contact_Manager
-# command line interface 
-# programing langugae used c++
+command line interface 
+programing langugae used c++
 
 modules
 1.addContact
