@@ -42,7 +42,7 @@ void addContact(Contact c){
     ofstream fout ("contact.dat",ios::app);
     fout.write((char*)&c,sizeof(c));
     fout.close();
-    cout<<"Contact added sucessfully"<<endl;
+    cout<<"Contact added sucessfully!"<<endl;
 };
 
 //to display all contacts
@@ -80,14 +80,22 @@ void search(int id){
 //to delete contact
 void deleted(int id){
     Contact temp;
-    ifstream inf("contact.dat");
-    inf.read((char*)&temp,sizeof(temp));
+    ifstream fin("contact.dat");
+    ofstream fout("temp.dat");
+    Contact obj;
     while(1){
-        if(inf.eof()){
+        fin.read((char*)&obj,sizeof(obj));
+        if(fin.eof()){
             break;
+        }else{
+            if(obj.id != id){
+            fout.write((char*)&obj,sizeof(obj));
         }
-        if(temp.id == id){
-
         }
     }
+    fin.close();
+    fout.close();
+    remove("contact.dat");
+    rename("temp.dat","contact.dat");
+    cout<<"contact deleted succesfully!"<<endl;
 };
